@@ -1,0 +1,14 @@
+
+\.vs/
+
+TaskDialogWrapper/bin/
+
+TaskDialogWrapper/obj/
+
+TaskDialogWrapperTest/bin/
+
+TaskDialogWrapperTest/obj/
+
+packages/MSTest\.TestAdapter\.1\.3\.2/
+
+packages/MSTest\.TestFramework\.1\.3\.2/

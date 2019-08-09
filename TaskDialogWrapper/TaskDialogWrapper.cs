@@ -1,4 +1,5 @@
 ﻿using Microsoft.WindowsAPICodePack.Dialogs;
+using System;
 
 namespace TaskDialogWrapperNamespace
 {
@@ -203,6 +204,111 @@ namespace TaskDialogWrapperNamespace
             set
             {
                 __dialog.Cancelable = value;
+            }
+        }
+
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        public TaskDialogStartupLocation StartupLocation
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        public string FooterText
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        public string FooterCheckBoxText
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        public TaskDialogStandardIcon FooterIcon
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+        
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        public string DetailsExpandedLabel
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+        
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        public string DetailsCollapsedLabel
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        public bool DetailsExpanded
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
             }
         }
     }

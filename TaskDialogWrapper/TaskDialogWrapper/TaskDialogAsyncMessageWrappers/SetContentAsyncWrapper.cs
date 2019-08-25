@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TaskDialogWrapper
 {
+    /// <summary>
+    /// Specifies the wrapper of the setting content message.
+    /// </summary>
     class SetContentAsyncWrapper : IAsyncMessage
     {
         private string text;

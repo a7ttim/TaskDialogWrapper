@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TaskDialogWrapper
 {
+    /// <summary>
+    /// Specifies the wrapper of the button enable message.
+    /// </summary>
     class EnableButtonAsyncWrapper : IAsyncMessage
     {
         private int buttonId;

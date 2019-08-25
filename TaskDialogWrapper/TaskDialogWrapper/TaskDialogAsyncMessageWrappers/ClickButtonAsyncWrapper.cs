@@ -5,7 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TaskDialogWrapper
-{
+{    
+    /// <summary>
+    /// Specifies the wrapper of the click button message.
+    /// </summary>
     class ClickButtonAsyncWrapper : IAsyncMessage
     {
         private int buttonId = 0;

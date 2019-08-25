@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TaskDialogWrapper
 {
+    /// <summary>
+    /// Specifies the wrapper of the progress bar range setting message.
+    /// </summary>
     class SetProgressBarRangeAsyncWrapper : IAsyncMessage
     {
         private short minRange;

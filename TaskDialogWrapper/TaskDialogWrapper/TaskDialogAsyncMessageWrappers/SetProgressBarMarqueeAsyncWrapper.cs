@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TaskDialogWrapper
 {
+    /// <summary>
+    /// Specifies the wrapper of the progress bar marque animation speed setting message.
+    /// </summary>
     class SetProgressBarMarqueeAsyncWrapper : IAsyncMessage
     {
         private bool marqueMode;

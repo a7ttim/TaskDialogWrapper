@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TaskDialogWrapper
 {
+    /// <summary>
+    /// Specifies the wrapper of the setting window title message.
+    /// </summary>
     class SetWindowTextAsyncWrapper : IAsyncMessage
     {
         private string text;

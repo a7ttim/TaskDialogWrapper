@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TaskDialogWrapper
 {
+    /// <summary>
+    /// Specifies the wrapper of the progress bar current position setting message.
+    /// </summary>
     class SetProgressBarPositionAsyncWrapper : IAsyncMessage
     {
         private int position;

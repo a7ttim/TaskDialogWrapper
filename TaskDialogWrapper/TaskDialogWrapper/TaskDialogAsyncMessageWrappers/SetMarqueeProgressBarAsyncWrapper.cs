@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TaskDialogWrapper
 {
+    /// <summary>
+    /// Specifies the wrapper of the progress bar marque mode enabling message.
+    /// </summary>
     class SetMarqueeProgressBarAsyncWrapper : IAsyncMessage
     {
         private bool marqueMode;

@@ -7,49 +7,113 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace TaskDialogWrapper
 {
+    /// <summary>
+    /// Delegate for messages to the Task Dialog.
+    /// </summary>
     public class TaskDialog
-    {
+    {        
+        /// <summary>
+        /// Declaration of a delegate for messages to the Task Dialog.
+        /// </summary>
         public delegate int TaskDialogMessagesCallbackDelegate(in IntPtr handle);
-        public delegate int TaskDialogButtonClickedCallbackDelegate(in int buttonId);
+        
+        /// <summary>
+        /// Declaration of a delegate for buttons notifications from the Task Dialog.
+        /// </summary>
+        public delegate int TaskDialogButtonClickedCallbackDelegate(in int buttonId);   
+        
+        /// <summary>
+        /// Declaration of a delegate for hyperlinks notifications from the Task Dialog.
+        /// </summary>
         public delegate int TaskDialogHyperLinkClickedCallbackDelegate(in string hyperLink);
+        
+        /// <summary>
+        /// Declaration of a delegate for timer tick notifications from the Task Dialog.
+        /// </summary>
         public delegate int TaskDialogTimerTickCallbackDelegate(in uint timer);
-
+        
+        /// <summary>
+        /// Specifies the parent window handler for the Task Dialog.
+        /// </summary>
         private IntPtr hwndParent;
 
+        /// <summary>
+        /// Specifies the window title of the Task Dialog.
+        /// </summary>
         private string windowTitle;
 
+        /// <summary>
+        /// Specifies the window main instruction of the Task Dialog.
+        /// </summary>
         private string mainInstruction;
 
+        /// <summary>
+        /// The content of the Task Dialog.
+        /// </summary>
         private string content;
 
+        /// <summary>
+        /// Specifies the window main icon of the Task Dialog.
+        /// </summary>
         private TaskDialogMainIcon mainIcon;
 
+        /// <summary>
+        /// Specifies the window custom main icon of the Task Dialog.
+        /// </summary>
         private Icon customMainIcon;
 
+        /// <summary>
+        /// Specifies the progress bar of the Task Dialog.
+        /// </summary>
         private TaskDialogProgressBar progressBar;
 
         /// <summary>
-        /// The flags passed to TaskDialogIndirect.
+        /// Specifies flags which will be passed to TaskDialogIndirect.
         /// </summary>
         private TaskDialogFlags flags;
 
+        /// <summary>
+        /// Specifies the common buttons flag of the Task Dialog.
+        /// </summary>
         private TaskDialogCommonButtons commonButtons;
 
+        /// <summary>
+        /// Specifies custom buttons of the Task Dialog.
+        /// </summary>
         private TaskDialogButton[] customButtons;
-                       
-        private TaskDialogMessagesCallbackDelegate messagesCallbackDelegate;
+                
+        /// <summary>
+        /// Specifies the delegate for messages to the Task Dialog.
+        /// </summary>
+        private TaskDialogMessagesCallbackDelegate messagesCallbackDelegate;        
+        
+        /// <summary>
+        /// Specifies the delegate for buttons notifications from the Task Dialog.
+        /// </summary>
         private TaskDialogButtonClickedCallbackDelegate buttonClickedCallbackDelegate;
+        
+        /// <summary>
+        /// Specifies the delegate for hyperlinks notifications from the Task Dialog.
+        /// </summary>
         private TaskDialogHyperLinkClickedCallbackDelegate hyperLinkClickedCallbackDelegate;
+        
+        /// <summary>
+        /// Specifies the delegate for timer tick notifications from the Task Dialog.
+        /// </summary>
         private TaskDialogTimerTickCallbackDelegate timerTickCallbackDelegate;
+        
+        /// <summary>
+        /// Specifies the message queue for async messages to the Task Dialog in loop.
+        /// </summary>
         private Queue<IAsyncMessage> messageQueue;
 
         /// <summary>
-        /// Specifies the width of the Task Dialog’s client area in DLU’s. If 0, Task Dialog will calculate the ideal width.
+        /// Specifies the width of the Task Dialog.
         /// </summary>
         private uint width;
 
         /// <summary>
-        /// The window title in header of the dialog.
+        /// Specifies the window title displayed in header of the Task Dialog.
         /// </summary>
         public string WindowTitle
         {
@@ -57,6 +121,9 @@ namespace TaskDialogWrapper
             set => windowTitle = value;
         }
 
+        /// <summary>
+        /// Sets the window title in header of the Task Dialog asynchronously.
+        /// </summary>
         public void SetWindowTitleInstructionAsync(in string windowTitle)
         {
             this.windowTitle = windowTitle;
@@ -64,7 +131,7 @@ namespace TaskDialogWrapper
         }
 
         /// <summary>
-        /// The main instruction displayed in the dialog box.
+        /// Specifies the main instruction displayed in the Task Dialog box.
         /// </summary>
         public string MainInstruction
         {
@@ -72,6 +139,9 @@ namespace TaskDialogWrapper
             set => mainInstruction = value;
         }
 
+        /// <summary>
+        /// Sets the main instruction in the Task Dialog box asynchronously.
+        /// </summary>
         public void SetMainInstructionAsync(in string mainInstruction)
         {
             this.mainInstruction = mainInstruction;
@@ -79,7 +149,7 @@ namespace TaskDialogWrapper
         }
 
         /// <summary>
-        /// The content displayed in the dialog box.
+        /// Specifies the content displayed in the Task Dialog box.
         /// </summary>
         public string Content
         {
@@ -87,6 +157,9 @@ namespace TaskDialogWrapper
             set => content = value;
         }
 
+        /// <summary>
+        /// Sets the content in the Task Dialog box asynchronously.
+        /// </summary>
         public void SetContentAsync(in string content)
         {
             this.content = content;
@@ -94,7 +167,7 @@ namespace TaskDialogWrapper
         }
 
         /// <summary>
-        /// The main icon displayed in the dialog box.
+        /// Specifies the main icon displayed in the Task Dialog box.
         /// </summary>
         public TaskDialogMainIcon MainIcon
         {
@@ -102,18 +175,27 @@ namespace TaskDialogWrapper
             set => mainIcon = value;
         }
 
+        /// <summary>
+        /// Sets the main icon in the dialog box asynchronously.
+        /// </summary>
         public void SetMainIconAsync(in TaskDialogMainIcon mainIcon)
         {
             this.mainIcon = mainIcon;
             messageQueue.Enqueue(new UpdateMainIconAsyncWrapper(mainIcon));
         }
 
+        /// <summary>
+        /// Specifies the custom main icon displayed in the Task Dialog box.
+        /// </summary>
         public Icon CustomMainIcon
         {
             get => customMainIcon;
             set => customMainIcon = value;
         }
 
+        /// <summary>
+        /// Sets the main icon in the Task Dialog box asynchronously.
+        /// </summary>
         public void SetMainIconAsync(in Icon customMainIcon)
         {
             this.customMainIcon = customMainIcon;
@@ -122,7 +204,7 @@ namespace TaskDialogWrapper
 
 
         /// <summary>
-        /// Specifies the push buttons displayed in the dialog box.
+        /// Specifies the push buttons displayed in the Task Dialog box.
         /// </summary>
         public TaskDialogCommonButtons CommonButtons
         {
@@ -131,7 +213,7 @@ namespace TaskDialogWrapper
         }
 
         /// <summary>
-        /// Specifies the custom push buttons to display in the dialog.
+        /// Specifies the custom push buttons to display in the Task Dialog.
         /// </summary>
         [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays")] // Returns a reference, not a copy.
         public TaskDialogButton[] CustomButtons
@@ -140,18 +222,24 @@ namespace TaskDialogWrapper
             set => this.customButtons = value;
         }
 
+        /// <summary>
+        /// Enables the custom push buttons in the Task Dialog asynchronously.
+        /// </summary>
         public void EnableButtonAsync(int buttonId, bool enabled)
         {
             messageQueue.Enqueue(new EnableButtonAsyncWrapper(buttonId, !enabled));
         }
 
+        /// <summary>
+        /// Requires elevated user rights for the button by id.
+        /// </summary>
         public void SetButtonElevationRequiredStateAsync(int buttonId, bool elevationRequired)
         {
             messageQueue.Enqueue(new SetButtonElevationRequiredStateAsyncWrapper(buttonId, elevationRequired));
         }
 
         /// <summary>
-        /// The progress bar displayed in the dialog box.
+        /// Specifies the progress bar displayed in the Task Dialog box.
         /// </summary>
         public ITaskDialogProgressBar ProgressBar
         {
@@ -166,7 +254,7 @@ namespace TaskDialogWrapper
         }
 
         /// <summary>
-        /// ***
+        /// Enables the progress bar in the Task Dialog box.
         /// </summary>
         public bool ProgressBarEnabled
         {
@@ -188,7 +276,7 @@ namespace TaskDialogWrapper
         }
 
         /// <summary>
-        /// ***
+        /// Enables hyperlinks in the content in the Task Dialog box.
         /// </summary>
         public bool HyperlinksBarEnabled
         {
@@ -210,7 +298,7 @@ namespace TaskDialogWrapper
         }
 
         /// <summary>
-        /// ***
+        /// Sets the Task Dialog cancellable. 
         /// </summary>
         public bool Cancellable
         {
@@ -233,7 +321,7 @@ namespace TaskDialogWrapper
         }
 
         /// <summary>
-        /// ***
+        /// Sets the Task Dialog minimizable. 
         /// </summary>
         public bool CanBeMinimized
         {
@@ -256,7 +344,7 @@ namespace TaskDialogWrapper
         }
 
         /// <summary>
-        /// ***
+        /// Sets the Task Dialog expanded by default. 
         /// </summary>
         public bool ExpandedByDefault
         {
@@ -277,34 +365,53 @@ namespace TaskDialogWrapper
             }
         }
         
+        /// <summary>
+        /// Specifies the width of the Task Dialog.
+        /// </summary>
         public uint Width
         {
             get => width;
             set => width = value;
         }
+        
+        /// <summary>
+        /// Specifies the delegate for buttons notifications from the Task Dialog.
+        /// </summary>
         public TaskDialogButtonClickedCallbackDelegate ButtonClickedCallbackDelegate
         {
             get => buttonClickedCallbackDelegate;
             set => buttonClickedCallbackDelegate = value;
         }
 
+        /// <summary>
+        /// Specifies the delegate for hyperlinks notifications from the Task Dialog.
+        /// </summary>
         public TaskDialogHyperLinkClickedCallbackDelegate HyperLinkClickedCallbackDelegate
         {
             get => hyperLinkClickedCallbackDelegate;
             set => hyperLinkClickedCallbackDelegate = value;
         }
 
+        /// <summary>
+        /// Specifies the delegate for timer tick notifications from the Task Dialog.
+        /// </summary>
         public TaskDialogTimerTickCallbackDelegate TimerTickCallbackDelegate
         {
             get => timerTickCallbackDelegate;
             set => timerTickCallbackDelegate = value;
         }
 
+        /// <summary>
+        /// Clicks the button in the Task Dialog asynchronously.
+        /// </summary>
         public void ClickButton(in int buttonId)
         {
             messageQueue.Enqueue(new ClickButtonAsyncWrapper(buttonId));
         }
 
+        /// <summary>
+        /// The Task Dialog constructor.
+        /// </summary>
         public TaskDialog()
         {
             hwndParent = IntPtr.Zero;
@@ -322,6 +429,9 @@ namespace TaskDialogWrapper
             messageQueue = new Queue<IAsyncMessage>();
         }
 
+        /// <summary>
+        /// Assembles the Task Dialog Config then displays the Task Dialog using the Task Dialog Indirect function.
+        /// </summary>
         public int Show()
         {
             TaskDialogConfig dialogConfig = new TaskDialogConfig();
@@ -367,12 +477,11 @@ namespace TaskDialogWrapper
                 dialogConfig.pfCallback = new TaskDialogCallbackC(this.TaskDialogCallback);
 
                 TaskDialogC.TaskDialogIndirect(ref dialogConfig, out _, out result, out _);
-            }
-            /*
+            }            
             catch(Exception exception)
             {
                 throw exception;
-            }*/
+            }
             finally
             {
                 if (dialogConfig.pButtons != IntPtr.Zero)
@@ -396,6 +505,9 @@ namespace TaskDialogWrapper
             return result;
         }
 
+        /// <summary>
+        /// The callback for the messages queue to the Task Dialog.
+        /// </summary>
         private int TaskCircle(in IntPtr handle)
         {
             while(messageQueue.Count > 0)
@@ -406,7 +518,7 @@ namespace TaskDialogWrapper
         }
 
         /// <summary>
-        /// The callback for async messages to the Task Dialog and notifications from that.
+        /// The callback for async messages to the Task Dialog and notifications from the above.
         /// </summary>
         private int TaskDialogCallback([In] IntPtr hwnd, [In] uint msg, [In] UIntPtr wparam, [In] IntPtr lparam, [In] IntPtr refData)
         {

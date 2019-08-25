@@ -3,6 +3,9 @@ using System.Drawing;
 
 namespace TaskDialogWrapper
 {
+    /// <summary>
+    /// Specifies the wrapper of the main icon setting message.
+    /// </summary>
     class UpdateMainIconAsyncWrapper : IAsyncMessage
     {
         private TaskDialogMainIcon icon;

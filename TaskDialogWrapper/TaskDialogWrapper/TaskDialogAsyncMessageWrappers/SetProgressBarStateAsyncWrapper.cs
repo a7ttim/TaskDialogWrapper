@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TaskDialogWrapper
 {
+    /// <summary>
+    /// Specifies the wrapper of the progress bar state setting message.
+    /// </summary>
     class SetProgressBarStateAsyncWrapper : IAsyncMessage
     {
         private TaskDialogProgressBarState state;

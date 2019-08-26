@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TaskDialogWrapper
 {
+    /// <summary>
+    /// Specifies the wrapper of the user rights elevation required message.
+    /// </summary>
     class SetButtonElevationRequiredStateAsyncWrapper : IAsyncMessage
     {
         private int buttonId;

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
@@ -55,7 +54,7 @@ namespace TaskDialogWrapper
         /// <summary>
         /// Specifies the window main icon of the Task Dialog.
         /// </summary>
-        private TaskDialogMainIcon mainIcon;
+        private TaskDialogIcon mainIcon;
 
         /// <summary>
         /// Specifies the window custom main icon of the Task Dialog.
@@ -111,6 +110,11 @@ namespace TaskDialogWrapper
         /// Specifies the width of the Task Dialog.
         /// </summary>
         private uint width;
+        
+        /// <summary>
+        /// Specifies the default button of the Task Dialog.
+        /// </summary>
+        private int defaultButton;
 
         /// <summary>
         /// Specifies the window title displayed in header of the Task Dialog.
@@ -169,7 +173,7 @@ namespace TaskDialogWrapper
         /// <summary>
         /// Specifies the main icon displayed in the Task Dialog box.
         /// </summary>
-        public TaskDialogMainIcon MainIcon
+        public TaskDialogIcon MainIcon
         {
             get => mainIcon;
             set => mainIcon = value;
@@ -178,7 +182,7 @@ namespace TaskDialogWrapper
         /// <summary>
         /// Sets the main icon in the dialog box asynchronously.
         /// </summary>
-        public void SetMainIconAsync(in TaskDialogMainIcon mainIcon)
+        public void SetMainIconAsync(in TaskDialogIcon mainIcon)
         {
             this.mainIcon = mainIcon;
             messageQueue.Enqueue(new UpdateMainIconAsyncWrapper(mainIcon));
@@ -215,6 +219,7 @@ namespace TaskDialogWrapper
         /// <summary>
         /// Specifies the custom push buttons to display in the Task Dialog.
         /// </summary>
+        [SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")] // Style of use is like single value. Array is of value types.
         [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays")] // Returns a reference, not a copy.
         public TaskDialogButton[] CustomButtons
         {
@@ -410,6 +415,285 @@ namespace TaskDialogWrapper
         }
 
         /// <summary>
+        /// Not implemented.
+        /// </summary>
+        [SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")] // Style of use is like single value. Array is of value types.
+        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays")] // Returns a reference, not a copy.
+        public TaskDialogButton[] RadioButtons
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        public bool UseCommandLinks
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        public string FooterText
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        public TaskDialogIcon FooterIcon
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        public bool ExpandFooterArea
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public bool UseCommandLinksNoIcon
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        public bool VerificationFlagChecked
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+        
+        /// <summary>
+        /// Enables the callback which should be called for every 200 milliseconds.
+        /// </summary>
+        public bool CallbackTimer
+        {
+            get
+            {
+                return flags.HasFlag(TaskDialogFlags.CallbackTimer);
+            }
+
+            set
+            {
+                if (value)
+                {
+                    this.flags |= TaskDialogFlags.CallbackTimer;
+                }
+                else
+                {
+                    this.flags &= ~TaskDialogFlags.CallbackTimer;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        public bool PositionRelativeToWindow
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Indicates that the TaskDialog should have right to left layout.
+        /// </summary>
+        public bool RightToLeftLayout
+        {
+            get
+            {
+                return flags.HasFlag(TaskDialogFlags.RightToLeftLayout);
+            }
+
+            set
+            {
+                if (value)
+                {
+                    this.flags |= TaskDialogFlags.RightToLeftLayout;
+                }
+                else
+                {
+                    this.flags &= ~TaskDialogFlags.RightToLeftLayout;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        public bool NoDefaultRadioButton
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Specifies the default button of the Task Dialog.
+        /// </summary>
+        public int DefaultButton
+        {
+            get => defaultButton;
+            set => defaultButton = value;
+        }
+
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        public int DefaultRadioButton
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        public string VerificationText
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        public string ExpandedInformation
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        public string ExpandedControlText
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        public string CollapsedControlText
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        public string Footer
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
         /// The Task Dialog constructor.
         /// </summary>
         public TaskDialog()
@@ -419,7 +703,7 @@ namespace TaskDialogWrapper
             mainInstruction = null;
             content = null;
             commonButtons = 0;
-            mainIcon = TaskDialogMainIcon.None;
+            mainIcon = TaskDialogIcon.None;
             customMainIcon = null;
             customButtons = new TaskDialogButton[0];
             flags = TaskDialogFlags.CallbackTimer;
@@ -448,6 +732,7 @@ namespace TaskDialogWrapper
                 dialogConfig.pszWindowTitle = windowTitle;
                 dialogConfig.pszMainInstruction = mainInstruction;
                 dialogConfig.pszContent = content;
+                dialogConfig.nDefaultButton = defaultButton;
 
                 if (this.customMainIcon != null)
                 {

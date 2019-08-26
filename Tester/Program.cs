@@ -7,12 +7,12 @@ namespace TaskDialogTester
     class Program
     {
         static void Main()
-        {
+        {            
             TaskDialog taskDialogWrapper = new TaskDialog();
             taskDialogWrapper.WindowTitle = "Кириллица в заголовке";
             taskDialogWrapper.Content = "Контент с гиперссылкой <a href=\"https://github.com/a7ttim\">https://github.com/a7ttim</a>";
             taskDialogWrapper.HyperlinksBarEnabled = true;
-            taskDialogWrapper.MainIcon = TaskDialogMainIcon.Information;
+            taskDialogWrapper.MainIcon = TaskDialogIcon.Information;
             taskDialogWrapper.MainInstruction = "Главная инструкция";
             taskDialogWrapper.CustomButtons = new TaskDialogButton[3]
             {
@@ -127,6 +127,16 @@ namespace TaskDialogTester
                 {
                 }
             });
+            Task.Delay(21000).ContinueWith(t =>
+            {
+                try
+                {
+                    taskDialogWrapper.ClickButton(4);
+                }
+                catch (ArgumentException)
+                {
+                }
+            });
             taskDialogWrapper.Show();
         }
 
@@ -139,7 +149,7 @@ namespace TaskDialogTester
         private static int ButtonClicked(in int buttonId)
         {
             Console.WriteLine(buttonId);
-            if(buttonId == 2)
+            if(buttonId == 4)
             {
                 return 0;
             }

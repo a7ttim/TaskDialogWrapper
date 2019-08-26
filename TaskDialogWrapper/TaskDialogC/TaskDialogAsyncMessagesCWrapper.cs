@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
-using System.Windows.Forms;
 
 namespace TaskDialogWrapper
 {
@@ -9,7 +7,7 @@ namespace TaskDialogWrapper
     /// <summary>
     /// Async messages to Task Dialog window. Provides several methods for acting on the active TaskDialog.
     /// </summary>
-    internal static class TaskDialogAsyncMessages
+    internal static class TaskDialogAsyncMessagesWrapper
     {
         /// <summary>
         /// Simulate the action of a button click in the TaskDialog. This can be a DialogResult value 
@@ -221,7 +219,7 @@ namespace TaskDialogWrapper
         /// custom via Icon type) must be used when upating the icon.
         /// </summary>
         /// <param name="icon">Task Dialog standard icon.</param>
-        public static void UpdateMainIconAsync(IntPtr handle, TaskDialogMainIcon icon)
+        public static void UpdateMainIconAsync(IntPtr handle, TaskDialogIcon icon)
         {
             // TDM_UPDATE_ICON = WM_USER+116  // wParam = icon element (TASKDIALOG_ICON_ELEMENTS), lParam = new icon (hIcon if TDF_USE_HICON_* was set, PCWSTR otherwise)
             TaskDialogMessageFunctions.SendMessage(

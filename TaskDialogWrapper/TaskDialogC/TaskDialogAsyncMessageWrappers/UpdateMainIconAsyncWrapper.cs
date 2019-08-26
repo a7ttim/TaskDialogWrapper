@@ -8,10 +8,10 @@ namespace TaskDialogWrapper
     /// </summary>
     class UpdateMainIconAsyncWrapper : IAsyncMessage
     {
-        private TaskDialogMainIcon icon;
+        private TaskDialogIcon icon;
         private Icon customIcon;
 
-        public UpdateMainIconAsyncWrapper(in TaskDialogMainIcon icon)
+        public UpdateMainIconAsyncWrapper(in TaskDialogIcon icon)
         {
             this.icon = icon;
         }
@@ -25,11 +25,11 @@ namespace TaskDialogWrapper
         {
             if(customIcon != null)
             {
-                TaskDialogAsyncMessages.UpdateMainIconAsync(handle, customIcon);
+                TaskDialogAsyncMessagesWrapper.UpdateMainIconAsync(handle, customIcon);
             }
             else
             {
-                TaskDialogAsyncMessages.UpdateMainIconAsync(handle, icon);
+                TaskDialogAsyncMessagesWrapper.UpdateMainIconAsync(handle, icon);
             }
 
             return 0;

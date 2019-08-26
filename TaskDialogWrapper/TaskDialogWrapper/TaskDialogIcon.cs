@@ -7,7 +7,7 @@ namespace TaskDialogWrapper
     /// https://docs.microsoft.com/en-us/windows/win32/api/commctrl/nf-commctrl-taskdialog
     /// </summary>
     [SuppressMessage("Microsoft.Design", "CA1028:EnumStorageShouldBeInt32")]
-    public enum TaskDialogMainIcon : uint
+    public enum TaskDialogIcon : uint
     {
         /// <summary>
         /// No Icon.

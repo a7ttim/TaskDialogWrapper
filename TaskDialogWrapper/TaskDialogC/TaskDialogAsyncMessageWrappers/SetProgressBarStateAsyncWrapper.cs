@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TaskDialogWrapper
 {
@@ -20,7 +16,7 @@ namespace TaskDialogWrapper
 
         public int Execute(IntPtr handle)
         {
-            return TaskDialogAsyncMessages.SetProgressBarStateAsync(handle, state) ? 0 : 1;
+            return TaskDialogAsyncMessagesWrapper.SetProgressBarStateAsync(handle, state) ? 0 : 1;
         }
     }
 }
